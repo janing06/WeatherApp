@@ -60,7 +60,7 @@
                 
                     <div class="weather" style="display: none;">
                          <img src="images/clear.png" id="weatherImage" width="150">
-                         <h3 class="fs-2" ><span id="city" class="fw-bold" style="font-family: tahoma">asdasd</span><span id="condition" class="small font-monospace">cloudy</span></h3>
+                         <h3 class="fs-2" ><span id="city" class="fw-bold" style="font-family: tahoma">asdasd</span><span id="condition" class="small font-monospace fs-6">cloudy</span></h3>
                          <h1 class="fw-bold fs-1" id="temp">30°C </h1>
                          <div class="row d-flex">
                               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 d-flex  justify-content-center text-start  mt-3" style="align-items: center;">
@@ -113,6 +113,8 @@
                const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${place}&appid=cb9f8aa5f4d2642afeb45b76ddadfd3d&units=metric`)
                var data = await res.json()
 
+               console.log(data)
+
                document.getElementById('spinner').style.display = 'none';
                document.getElementById('search_image').style.display = 'block';
 
@@ -142,28 +144,24 @@
      
                     document.getElementById('alert').style.display = 'none'
                     document.querySelector('.weather').style.display = "block"
+
+                    document.getElementById('condition').innerHTML = data.weather[0].description
            
 
 
                     var icon = document.getElementById('weatherImage')
 
                     if(data.weather[0].main == 'Clear'){
-                         document.getElementById('condition').innerHTML = 'clear'
                          icon.src = 'images/clear.png'
                     }else if(data.weather[0].main == 'Clouds'){
-                         document.getElementById('condition').innerHTML = 'cloudy'
                          icon.src = 'images/clouds.png'
                     }else if(data.weather[0].main == 'Drizzle'){
-                         document.getElementById('condition').innerHTML = 'drizzly'
                          icon.src = 'images/drizzle.png'
                     }else if(data.weather[0].main == 'Mist'){
-                         document.getElementById('condition').innerHTML = 'misty'
                          icon.src = 'images/mist.png'
                     }else if(data.weather[0].main == 'Rain'){
-                         document.getElementById('condition').innerHTML = 'rainy'
                          icon.src = 'images/rain.png'
                     }else if(data.weather[0].main == 'Snow'){
-                         document.getElementById('condition').innerHTML = 'snow'
                          icon.src = 'images/snow.png'
                     }
 
