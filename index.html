@@ -60,8 +60,8 @@
                 
                     <div class="weather" style="display: none;">
                          <img src="images/clear.png" id="weatherImage" width="150">
-                         <h3 class="fs-2 font-monospace" id="city">asdasd</h3>
-                         <h1 class="fw-bold fs-1" id="temp">30°C</h1>
+                         <h3 class="fs-2" ><span id="city" class="fw-bold" style="font-family: tahoma">asdasd</span><span id="condition" class="small font-monospace">cloudy</span></h3>
+                         <h1 class="fw-bold fs-1" id="temp">30°C </h1>
                          <div class="row d-flex">
                               <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 d-flex  justify-content-center text-start  mt-3" style="align-items: center;">
                                    <img src="images/humidity.png" width="40px" height="40px" alt="">`
@@ -83,7 +83,7 @@
                     <div id="map" class="mb-4" style="height: 250px; width:100%; border-radius:10px; border: 2px solid #fff;"></div>    
                    
                     <div class="d-flex">
-                         <input type="text" class="form-control me-2 rounded-5 border-0" placeholder="search a city" id="searchedCity">
+                         <input type="text" class="form-control me-2 rounded-5 border-0" placeholder="search city/municipal" id="searchedCity">
                          <button class="rounded-5 px-3 p-2 border-0" style="background-color: #fff;" id="searchBtn"><img src="images/search.png" id="search_image" width="16px" height="16px" style="display: block;"><i class="fa fa-spinner fa-spin" id="spinner" style="font-size:18px; display: none;color:#5b548a;" ></i></button>
                     </div>
                </div>
@@ -135,7 +135,7 @@
                     map.setView([data.coord.lat, data.coord.lon], 11.5)
                    
 
-                    document.getElementById('city').innerHTML = `${data.name}, ${data.sys.country}`
+                    document.getElementById('city').innerHTML = `${data.name}, ${data.sys.country} | `
                     document.getElementById('temp').innerHTML = Math.round(data.main.temp)+`°c`
                     document.getElementById('humidity').innerHTML = Math.round(data.main.humidity)+`%`
                     document.getElementById('wind').innerHTML = Math.round(data.wind.speed)+`km/h`
@@ -148,16 +148,22 @@
                     var icon = document.getElementById('weatherImage')
 
                     if(data.weather[0].main == 'Clear'){
+                         document.getElementById('condition').innerHTML = 'clear'
                          icon.src = 'images/clear.png'
                     }else if(data.weather[0].main == 'Clouds'){
+                         document.getElementById('condition').innerHTML = 'cloudy'
                          icon.src = 'images/clouds.png'
                     }else if(data.weather[0].main == 'Drizzle'){
+                         document.getElementById('condition').innerHTML = 'drizzly'
                          icon.src = 'images/drizzle.png'
                     }else if(data.weather[0].main == 'Mist'){
+                         document.getElementById('condition').innerHTML = 'misty'
                          icon.src = 'images/mist.png'
                     }else if(data.weather[0].main == 'Rain'){
+                         document.getElementById('condition').innerHTML = 'rainy'
                          icon.src = 'images/rain.png'
                     }else if(data.weather[0].main == 'Snow'){
+                         document.getElementById('condition').innerHTML = 'snow'
                          icon.src = 'images/snow.png'
                     }
 
